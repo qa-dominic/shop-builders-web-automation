@@ -14,7 +14,7 @@ public class SupportAdmin_Steps extends Base_Steps {
         click(loginPageObjects.userIcon(), "Menu Icon");
         click(loginPageObjects.MLoginbtn(), "Login option");
         type(loginPageObjects.Email_add(), "Email Field", reader.getEmailByRole(role));
-        type(loginPageObjects.Login_pass(), "Email Field", reader.getPasswordByRole(role));
+        type(loginPageObjects.Login_pass(), "Password Field", reader.getPasswordByRole(role));
         click(loginPageObjects.Continuebtn(), "Continue");
         LoggingUtils.info("Successful Logged In");
     }
@@ -49,6 +49,25 @@ public class SupportAdmin_Steps extends Base_Steps {
         supportAdminPageObjects.Costofsalestxtbox().clear();
         supportAdminPageObjects.grosssalestxtbox().clear();
         supportAdminPageObjects.pricetxtbox().clear();
+    }
+
+    public void cleareditinfotextbox41(String role) {
+        supportAdminPageObjects.Quantitytxtbox().clear();
+        supportAdminPageObjects.ItemWeighttxtbox().clear();
+        supportAdminPageObjects.ProductSize().clear();
+        supportAdminPageObjects.StyleNametxtbox().clear();
+        supportAdminPageObjects.Notetxtbox().clear();
+        click(supportAdminPageObjects.Barcodetxtbox(), "Barcode Textbox");
+        supportAdminPageObjects.Barcodetxtbox().clear();
+        supportAdminPageObjects.Lotnumbertxtbox().clear();
+        supportAdminPageObjects.Costofsalestxtbox().clear();
+        supportAdminPageObjects.grosssalestxtbox().clear();
+        supportAdminPageObjects.pricetxtbox().clear();
+    }
+
+    public void goToShopBuilder(){
+        click(loginPageObjects.userIcon(), "User Avatar");
+        click(adminPageObjects.shopbuilderbutton(), "Shopbuilder Button");
     }
 
     public void changeandrevertchanges(String role){
@@ -152,17 +171,17 @@ public class SupportAdmin_Steps extends Base_Steps {
     }
 
     public void inputsAddproduct(String role){
-        type(supportAdminPageObjects.Quantitytxtbox(), "Quantity Textbox", propertyReader.getproperty("Quantity"));
-        type(supportAdminPageObjects.ItemWeighttxtbox(), "Item Weight Textbox", propertyReader.getproperty("ItemWeight"));
-        type(supportAdminPageObjects.StyleNametxtbox(), "Style Name Textbox", propertyReader.getproperty("StyleName"));
-        type(supportAdminPageObjects.Notetxtbox(), "Notes Textbox", propertyReader.getproperty("Notes"));
+        type(supportAdminPageObjects.AddQuantitytxtbox(), "Quantity Textbox", propertyReader.getproperty("Quantity"));
+        type(supportAdminPageObjects.AddItemWeighttxtbox(), "Item Weight Textbox", propertyReader.getproperty("ItemWeight"));
+        type(supportAdminPageObjects.AddStyleNametxtbox(), "Style Name Textbox", propertyReader.getproperty("StyleName"+getRandomNumber()));
+        type(supportAdminPageObjects.AddNotetxtbox(), "Notes Textbox", propertyReader.getproperty("Notes"));
         LoggingUtils.info("SBR: Product info Inputs Successful");
 
-        type(supportAdminPageObjects.Barcodetxtbox(), "Barcode Textbox", propertyReader.getproperty("barcode"));
-        type(supportAdminPageObjects.Lotnumbertxtbox(), "Lot Number Textbox", propertyReader.getproperty("lotnumber"));
-        type(supportAdminPageObjects.Costofsalestxtbox(), "Cost of Sales Textbox", propertyReader.getproperty("costofsale"));
-        type(supportAdminPageObjects.grosssalestxtbox(), "Gross Sales Textbox", propertyReader.getproperty("grosssale"));
-        type(supportAdminPageObjects.pricetxtbox(), "Price Textbox", propertyReader.getproperty("price"));
+        type(supportAdminPageObjects.AddBarcodetxtbox(), "Barcode Textbox", propertyReader.getproperty("barcode"));
+        type(supportAdminPageObjects.AddLotnumbertxtbox(), "Lot Number Textbox", propertyReader.getproperty("lotnumber"));
+        type(supportAdminPageObjects.AddCostofsalestxtbox(), "Cost of Sales Textbox", propertyReader.getproperty("costofsale"));
+        type(supportAdminPageObjects.Addgrosssalestxtbox(), "Gross Sales Textbox", propertyReader.getproperty("grosssale"));
+        type(supportAdminPageObjects.Addpricetxtbox(), "Price Textbox", propertyReader.getproperty("price"));
     }
 
     //Test Cases
@@ -308,64 +327,52 @@ public class SupportAdmin_Steps extends Base_Steps {
        // logout("supportadmin");
     }
 
-
-    /////////////////////////////////////////////////////////////// this
-    public void SBL_TC_18_to_21_AddBanner() {
-        shopbuildernavigation("supportadmin");
-        click(supportAdminPageObjects.MLShopJewelryStore(), "ML Shop Jewelry Store");
-        click(supportAdminPageObjects.addbannerbtn(), "Add Banner");
-        waitSleep(2000);
-        LoggingUtils.info("SBL TC 18: Add Banner function: Success");
-        //TODO 
-        //banner upload image
-        uploadFile(supportAdminPageObjects.chooseBanner(), filePathUtils.getAbsolutePath());
-        //SBL TC 19 Img Related, need research
-        uploadFile(merchantObjects.coverPhoto(), filePathUtils.getAbsolutePath());
-        uploadFile(merchantObjects.imageContent(), filePathUtils.getAbsolutePath());
-        if(isVisible(merchantObjects.selectedCoverPhoto(), "Selected Photo" )||
-                isVisible(merchantObjects.selectedImageContent(), "Select Image Content")) {
-            passTest("SBR_TC_10_ImageUpload", "Successfully uploaded photo");
-        }else{
-            failTest("SBR_TC_10_ImageUpload", "Failed to upload photo");
-        }
-        waitSleep(2000);
-        click(supportAdminPageObjects.bannerscreensize(),"banner screen size");
-        waitSleep(2000);
-        typeEnter(supportAdminPageObjects.bannerscreensize(), "Screen Size", "small");
-        waitSleep(2000);
-        click(supportAdminPageObjects.bannerposition(),"Banner position");
-        waitSleep(2000);
-        typeEnter(supportAdminPageObjects.bannerposition(), "Position", "2");
-        waitSleep(2000);
-        LoggingUtils.info("SBL TC 20 Screen Size and Position: Success");
-        waitSleep(2000);
-
-        click(supportAdminPageObjects.submitbutton(),"Submit Button");
-        waitSleep(2000);
-        LoggingUtils.info("SBL TC 21 Submit Button: Success");
-        //delete after image works
-        click(supportAdminPageObjects.exitbutton(),"Exit button");
-
-       // logout("supportadmin");
-    }
+//    public void SBL_TC_18_to_21_AddBanner() {
+//        goToShopBuilder();
+//        waitSleep(2000);
+//        click(adminPageObjects.Store(1), "Store");
+//        waitSleep(2000);
+//        //add banner
+//        click(adminPageObjects.addBanner_btn(), getText(adminPageObjects.addBanner_btn()));
+//        waitSleep(1000);
+//        uploadFile(supportAdminPageObjects.chooseBanner(), filePathUtils.getAbsolutePath());
+//        waitSleep(1000);
+//        click(adminPageObjects.mainaccttxtbox2(), "Screen Size DropDown");
+//        waitSleep(1000);
+//        arrowKeyDown(1);
+//        click(adminPageObjects.provincedrop(), "Position DropDown");
+//        waitSleep(1000);
+//        arrowKeyDown(1);
+//        click(supportAdminPageObjects.submitbutton(),"Submit Button");
+//        isVisible(adminPageObjects.bannerStatus(), "Banner Status Pop Up");
+//        //
+//        waitSleep(3000);
+//        click(adminPageObjects.editBanner_btn(), "Edit Banner Button");
+//        waitSleep(1000);
+//        click(adminPageObjects.bannerCameraEdit_btn(), "Camera/Edit Icon");
+//        uploadFile(supportAdminPageObjects.chooseBanner(), filePathUtils.getAbsolutePath());
+//        click(supportAdminPageObjects.submitbutton(),"Submit Button");
+//        waitSleep(8000);
+//        isVisible(adminPageObjects.bannerImg_alt(), "Banner Image");
+//        click(adminPageObjects.bannerStatus_radioBtn(), "Banner Status Radio Button");
+//        waitSleep(1000);
+//        isVisible(adminPageObjects.bannerStatus(), "Banner Status Pop Up");
+//        passTest("SBA_TC_18", "Successfully Validated Banner Functionality");
+//    }
 
     public void SBL_TC_22_AddproductRedirection() {
         goingtoAddproductpage("supportadmin");
         LoggingUtils.info("SBL TC 22 Add Product Page Redirection: Success");
-
-       // logout("supportadmin");
     }
 
-    public void SBL_TC_23_and_24_ProductandSalesInput(){
-        goingtoAddproductpage("supportadmin");
-
-        waitSleep(4000);
-        inputsAddproduct("supportadmin");
-        isDisplayed(supportAdminPageObjects.Amparitotickbox());
-        LoggingUtils.info("SBL TC 23 & 24: Product & Sales Inputs Successful");
-
-       // logout("supportadmin");
-    }
+//    public void SBL_TC_23_and_24_ProductandSalesInput(){
+//        goingtoAddproductpage("supportadmin");
+//
+//        waitSleep(4000);
+//        inputsAddproduct("supportadmin");
+//        isDisplayed(supportAdminPageObjects.Amparitotickbox());
+//        LoggingUtils.info("SBL TC 23 & 24: Product & Sales Inputs Successful");
+//    }
 
     public void SBR_TC_25_ImageUpload(){
         goingtoAddproductpage("supportadmin");
@@ -383,67 +390,92 @@ public class SupportAdmin_Steps extends Base_Steps {
     public void SBL_TC_26_InputsRequired(){
         goingtoAddproductpage("supportadmin");
         waitSleep(3000);
-        inputsAddproduct("supportadmin");
 
-        supportAdminPageObjects.Quantitytxtbox().clear();
-        supportAdminPageObjects.ItemWeighttxtbox().clear();
-        supportAdminPageObjects.Barcodetxtbox().clear();
-        supportAdminPageObjects.Lotnumbertxtbox().clear();
-        supportAdminPageObjects.Costofsalestxtbox().clear();
-        supportAdminPageObjects.grosssalestxtbox().clear();
-        supportAdminPageObjects.pricetxtbox().clear();
+        click(supportAdminPageObjects.AddQuantitytxtbox(),"");
+            supportAdminPageObjects.AddQuantitytxtbox().clear();
+        click(supportAdminPageObjects.AddItemWeighttxtbox(),"");
+            supportAdminPageObjects.AddItemWeighttxtbox().clear();
+        click(supportAdminPageObjects.AddStyleNametxtbox(),"");
+            supportAdminPageObjects.AddStyleNametxtbox().clear();
+        click(supportAdminPageObjects.AddNotetxtbox(),"");
+            supportAdminPageObjects.AddNotetxtbox().clear();
+        click(supportAdminPageObjects.AddBarcodetxtbox(),"");
+            supportAdminPageObjects.AddBarcodetxtbox().clear();
+        click(supportAdminPageObjects.AddLotnumbertxtbox(),"");
+            supportAdminPageObjects.AddLotnumbertxtbox().clear();
+        click(supportAdminPageObjects.AddCostofsalestxtbox(),"");
+            supportAdminPageObjects.AddCostofsalestxtbox().clear();
+        click(supportAdminPageObjects.Addgrosssalestxtbox(),"");
+            supportAdminPageObjects.Addgrosssalestxtbox().clear();
+        click(supportAdminPageObjects.Addpricetxtbox(),"");
+            supportAdminPageObjects.Addpricetxtbox().clear();
+        click(supportAdminPageObjects.AddNotetxtbox(),"");
+
+        waitSleep(3000);
+
         LoggingUtils.info("SBL TC 26: Inputs Required Visible");
 
        // logout("supportadmin");
     }
 
     //to be ehanced
-    public void SBL_TC_27_SubmitandPublish(){
+    public void SBL_TC_27_SubmitAndPublish(){
         goingtoAddproductpage("supportadmin");
 
-        click(supportAdminPageObjects.Type(),"Type of Accessory");
-        click(supportAdminPageObjects.eighteenk(),"18k btn");
-        click(supportAdminPageObjects.whitegold(),"White Gold btn");
-        click(supportAdminPageObjects.mens(),"Mens btn");
-        click(supportAdminPageObjects.diamond(),"Diamond btn");
-        click(supportAdminPageObjects.red(),"Red btn");
-        click(supportAdminPageObjects.newcondition(),"New Condition btn");
+        waitSleep(4000);
+        click(supportAdminPageObjects.gender2(),"");
+        click(supportAdminPageObjects.Type(), "Type of Accessory");
+        click(supportAdminPageObjects.eighteenk(), "18k btn");
+        click(supportAdminPageObjects.whitegold(), "White Gold btn");
+        click(supportAdminPageObjects.mens(), "Mens btn");
+        click(supportAdminPageObjects.diamond(), "Diamond btn");
+        click(supportAdminPageObjects.red(), "Red btn");
+        click(supportAdminPageObjects.newcondition(), "New Condition btn");
         waitSleep(2500);
 
         supportAdminPageObjects.Quantitytxtbox().clear();
-        type(supportAdminPageObjects.Quantitytxtbox(), "Quantity Textbox", propertyReader.getproperty("Quantity"));
-//        type(supportAdminPageObjects.Size(), "Size Textbox", propertyReader.getproperty("Size"));
-//        type(supportAdminPageObjects.Diamondweight(), "Diamond Weight Textbox", propertyReader.getproperty("DiaWeight"));
-//        type(supportAdminPageObjects.Itemsweight(), "Item Weight Textbox", propertyReader.getproperty("ItemWeight"));
-        type(supportAdminPageObjects.StyleNametxtbox(), "Style Name Textbox", propertyReader.getproperty("StyleName") + getRandomNumber());
-        type(supportAdminPageObjects.Notetxtbox(), "Notes Textbox", propertyReader.getproperty("Notes"));
-        LoggingUtils.info("SBL: Product info Inputs Successful");
+        click(supportAdminPageObjects.AddQuantitytxtbox(),"");
+        type(supportAdminPageObjects.AddQuantitytxtbox(), "Quantity Textbox", ""+getRandomNumber());
+        click(supportAdminPageObjects.AddProductSize(),"");
+        type(supportAdminPageObjects.AddProductSize(), "Size Textbox",  ""+getRandomNumber());
+        click(supportAdminPageObjects.Adddiamondsize(),"");
+        type(supportAdminPageObjects.Adddiamondsize(), "Diamond Weight Textbox", ""+getRandomNumber());
+        click(supportAdminPageObjects.AddItemWeighttxtbox(),"");
+        type(supportAdminPageObjects.AddItemWeighttxtbox(), "Item Weight Textbox", ""+getRandomNumber());
+        click(supportAdminPageObjects.AddStyleNametxtbox(),"");
+        type(supportAdminPageObjects.AddStyleNametxtbox(), "Style Name Textbox", "wawser"+getRandomNumber());
+        click(supportAdminPageObjects.AddNotetxtbox(),"");
+        type(supportAdminPageObjects.AddNotetxtbox(), "Notes Textbox", propertyReader.getproperty("Notes"));
 
-        type(supportAdminPageObjects.Barcodetxtbox(), "Barcode Textbox", propertyReader.getproperty("barcode")+ getRandomNumber());
-        type(supportAdminPageObjects.Lotnumbertxtbox(), "Lot Number Textbox", propertyReader.getproperty("lotnumber")+getRandomNumber());
-        type(supportAdminPageObjects.Costofsalestxtbox(), "Cost of Sales Textbox", propertyReader.getproperty("costofsale"));
-        type(supportAdminPageObjects.grosssalestxtbox(), "Gross Sales Textbox", propertyReader.getproperty("grosssale"));
-        type(supportAdminPageObjects.pricetxtbox(), "Price Textbox", propertyReader.getproperty("price"));
+        click(supportAdminPageObjects.AddBarcodetxtbox(),"");
+        type(supportAdminPageObjects.AddBarcodetxtbox(), "Barcode Textbox",""+getRandomNumber());
+        click(supportAdminPageObjects.AddLotnumbertxtbox(),"");
+        type(supportAdminPageObjects.AddLotnumbertxtbox(), "Lot Number Textbox", ""+getRandomNumber());
+        click(supportAdminPageObjects.AddCostofsalestxtbox(),"");
+        type(supportAdminPageObjects.AddCostofsalestxtbox(), "Cost of Sales Textbox", propertyReader.getproperty("costofsale"));
+        click(supportAdminPageObjects.Addgrosssalestxtbox(),"");
+        type(supportAdminPageObjects.Addgrosssalestxtbox(), "Gross Sales Textbox", propertyReader.getproperty("grosssale"));
+        click(supportAdminPageObjects.Addpricetxtbox(),"");
+        type(supportAdminPageObjects.Addpricetxtbox(), "Price Textbox", propertyReader.getproperty("price"));
 
-//        click(supportAdminPageObjects.sizedropdown(),"Size Dropdown");
-//        click(supportAdminPageObjects.sizemedium(),"Size Medium");
-//        click(supportAdminPageObjects.packagingdropdown(),"Package Dropdown");
-//        click(supportAdminPageObjects.typedropdown(),"Type DropDown");
-
-        uploadFile(supportAdminPageObjects.coverPhoto(), filePathUtils.getAbsolutePath());
-        uploadFile(supportAdminPageObjects.imageContent(), filePathUtils.getAbsolutePath());
-        if(isVisible(supportAdminPageObjects.selectedCoverPhoto(), "Selected Photo" )||
-                isVisible(supportAdminPageObjects.selectedImageContent(), "Select Image Content")) {
-            passTest("SBR_TC_27_ImageUpload", "Successfully uploaded photo");
+        uploadFile(merchantObjects.coverPhoto(), filePathUtils.getAbsolutePath());
+        uploadFile(merchantObjects.imageContent(), filePathUtils.getAbsolutePath());
+        if(isVisible(merchantObjects.selectedCoverPhoto(), "Selected Photo" )||
+                isVisible(merchantObjects.selectedImageContent(), "Select Image Content")) {
+            passTest("SBR_TC_25_ImageUpload", "Successfully uploaded photo");
         }else{
-            failTest("SBR_TC_27_ImageUpload", "Failed to upload photo");
+            failTest("SBR_TC_25_ImageUpload", "Failed to upload photo");
         }
 
-        click(supportAdminPageObjects.Publlishbtnadd(),"Publish Button");
-        click(supportAdminPageObjects.Proceed(),"Proceed Btn");
-        waitSleep(5000);
-        LoggingUtils.info("SBL TC 27: Publish: Success");
-       // logout("supportadmin");
+        click(merchantObjects.publishbtn(), "Publish Button");
+        waitSleep(2000);
+        click(supportAdminPageObjects.proceedbtn(), "Proceed Button");
+
+        if(isVisible(merchantObjects.status(), getText(merchantObjects.status()))){
+            passTest("SBL_TC_27", "Publishing Product: Successful");
+        }else{
+            failTest("SBL_TC_27", "Publishing Product: Failed");
+        }
     }
 
     public void SBL_TC_28_ViewProductRedirection() {
@@ -608,34 +640,139 @@ public class SupportAdmin_Steps extends Base_Steps {
         click(supportAdminPageObjects.editinfobtn(),"Edit Info");
         click(supportAdminPageObjects.availabilityforshop(),"Availability for shop");
 
-        cleareditinfotextbox("supportadmin");
-        waitSleep(3000);
+        waitSleep(1000);
+        click(supportAdminPageObjects.typeedit(),"type dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.typeedit2(),"type dropdown/textbox choice");
+
+        click(supportAdminPageObjects.goldkaratsedit(),"gold karat dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.goldkaratsedit2(),"gold karat dropdown/textbox choice");
+
+        click(supportAdminPageObjects.goldcoloredit()," gold color dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.goldcoloredit2()," gold color dropdown/textbox choice");
+
+        click(supportAdminPageObjects.genderedit()," gender dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.genderedit2()," gender dropdown/textbox choice");
+
+        click(supportAdminPageObjects.stoneedit(),"stone dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.stoneedit2(),"stone dropdown/textbox  choice");
+
+        click(supportAdminPageObjects.stonecoloredit(),"stone color dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.stonecoloredit2(),"stone color dropdown/textbox choice");
+
+        click(supportAdminPageObjects.conditionedit(),"condition dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.conditionedit2(),"condition dropdown/textbox choice");
+        waitSleep(1000);
+
+        click(supportAdminPageObjects.Quantitytxtbox(), "Quantity Textbox");
+        supportAdminPageObjects.Quantitytxtbox().clear();
+        supportAdminPageObjects.ProductSize().clear();
+        supportAdminPageObjects.ItemWeighttxtbox().clear();
+        supportAdminPageObjects.StyleNametxtbox().clear();
+        supportAdminPageObjects.Notetxtbox().clear();
+        click(supportAdminPageObjects.Barcodetxtbox(), "Barcode Textbox");
+        supportAdminPageObjects.Barcodetxtbox().clear();
+        supportAdminPageObjects.Lotnumbertxtbox().clear();
+        supportAdminPageObjects.Costofsalestxtbox().clear();
+        supportAdminPageObjects.grosssalestxtbox().clear();
+        supportAdminPageObjects.pricetxtbox().clear();
+
+        waitSleep(2000);
         type(supportAdminPageObjects.Quantitytxtbox(), "Changed Value", "2");
+        type(supportAdminPageObjects.ProductSize(), "Changed Value", "6");
         type(supportAdminPageObjects.ItemWeighttxtbox(), "Changed Value", "6");
         type(supportAdminPageObjects.StyleNametxtbox(), "Changed Value", "testtest");
         type(supportAdminPageObjects.Notetxtbox(), "Changed Value", "testing the test");
+        String quantityVal = getValue(supportAdminPageObjects.Quantitytxtbox());
+        String sizeVal = getValue(supportAdminPageObjects.ProductSize());
+        String itemweightVal = getValue(supportAdminPageObjects.ItemWeighttxtbox());
+        String stylenameVal = getValue(supportAdminPageObjects.StyleNametxtbox());
+        String notetextVal = getValue(supportAdminPageObjects.Notetxtbox());
 
         type(supportAdminPageObjects.Barcodetxtbox(), "Changed Value", "7654321");
         type(supportAdminPageObjects.Lotnumbertxtbox(), "Changed Value", "87654321");
         type(supportAdminPageObjects.Costofsalestxtbox(), "Changed Value", "2000");
         type(supportAdminPageObjects.grosssalestxtbox(), "Changed Value", "3000");
         type(supportAdminPageObjects.pricetxtbox(), "Changed Value", "2999");
+//        String barcodeVal = getValue(supportAdminPageObjects.Barcodetxtbox());
+//        String lotnumberVal = getValue(supportAdminPageObjects.Lotnumbertxtbox());
+//        String costofsaleVal = getValue(supportAdminPageObjects.Costofsalestxtbox());
+//        String grosssaleVal = getValue(supportAdminPageObjects.grosssalestxtbox());
+//        String priceVal = getValue(supportAdminPageObjects.pricetxtbox());
+//        waitSleep(2000);
+//
+//        assertEqual(getValue(supportAdminPageObjects.Quantitytxtbox()), quantityVal);
+//        assertEqual(getValue(supportAdminPageObjects.ProductSize()), sizeVal);
+//        assertEqual(getValue(supportAdminPageObjects.ItemWeighttxtbox()), itemweightVal);
+//        assertEqual(getValue(supportAdminPageObjects.StyleNametxtbox()), stylenameVal);
+//        assertEqual(getValue(supportAdminPageObjects.Notetxtbox()), notetextVal);
+//
+//        assertEqual(getValue(supportAdminPageObjects.Barcodetxtbox()), barcodeVal);
+//        assertEqual(getValue(supportAdminPageObjects.Lotnumbertxtbox()), lotnumberVal);
+//        assertEqual(getValue(supportAdminPageObjects.Costofsalestxtbox()), costofsaleVal);
+//        assertEqual(getValue(supportAdminPageObjects.grosssalestxtbox()), grosssaleVal);
+//        assertEqual(getValue(supportAdminPageObjects.pricetxtbox()), priceVal);
 
         LoggingUtils.info("SBL TC 41 Edited Info: Successful");
-       // logout("supportadmin");
     }
 
     public void SBL_TC_42_BlankFields_NeedInputs() {
         goingtoViewDetailspage("supportadmin");
-
         click(supportAdminPageObjects.editinfobtn(),"Edit Info");
         click(supportAdminPageObjects.availabilityforshop(),"Availability for shop");
-        waitSleep(2500);
-        cleareditinfotextbox("supportadmin");
-        click(supportAdminPageObjects.updateandsubmit(),"Update & Submit");
 
-        LoggingUtils.info("SBL TC 42 Input Indicators Visibility: Successful");
-       // logout("supportadmin");
+        waitSleep(1000);
+        click(supportAdminPageObjects.typeedit(),"type dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.typeedit2(),"type dropdown/textbox choice");
+
+        click(supportAdminPageObjects.goldkaratsedit(),"gold karat dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.goldkaratsedit2(),"gold karat dropdown/textbox choice");
+
+        click(supportAdminPageObjects.goldcoloredit()," gold color dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.goldcoloredit2()," gold color dropdown/textbox choice");
+
+        click(supportAdminPageObjects.genderedit()," gender dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.genderedit2()," gender dropdown/textbox choice");
+
+        click(supportAdminPageObjects.stoneedit(),"stone dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.stoneedit2(),"stone dropdown/textbox  choice");
+
+        click(supportAdminPageObjects.stonecoloredit(),"stone color dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.stonecoloredit2(),"stone color dropdown/textbox choice");
+
+        click(supportAdminPageObjects.conditionedit(),"condition dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.conditionedit2(),"condition dropdown/textbox choice");
+        waitSleep(1000);
+
+        click(supportAdminPageObjects.Quantitytxtbox(), "Quantity Textbox");
+        supportAdminPageObjects.Quantitytxtbox().clear();
+        supportAdminPageObjects.ProductSize().clear();
+        supportAdminPageObjects.ItemWeighttxtbox().clear();
+        supportAdminPageObjects.StyleNametxtbox().clear();
+        supportAdminPageObjects.Notetxtbox().clear();
+        click(supportAdminPageObjects.Barcodetxtbox(), "Barcode Textbox");
+        supportAdminPageObjects.Barcodetxtbox().clear();
+        supportAdminPageObjects.Lotnumbertxtbox().clear();
+        supportAdminPageObjects.Costofsalestxtbox().clear();
+        supportAdminPageObjects.grosssalestxtbox().clear();
+        supportAdminPageObjects.pricetxtbox().clear();
+
+        click(supportAdminPageObjects.updateandsubmit(),"Update and submit Button");
+
+        LoggingUtils.info("SBL TC 42 Need Input in Empty fields: Successful");
     }
 
     public void SBL_TC_43_ShippingDetailsFunctionality() {
@@ -681,11 +818,88 @@ public class SupportAdmin_Steps extends Base_Steps {
         click(supportAdminPageObjects.editinfobtn(),"Edit Info");
         click(supportAdminPageObjects.availabilityforshop(),"Availability for shop");
 
-        cleareditinfotextbox("supportadmin");
-        changeandrevertchanges("supportadmin");
+        waitSleep(1000);
+        click(supportAdminPageObjects.typeedit(),"type dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.typeedit2(),"type dropdown/textbox choice");
 
-        LoggingUtils.info("SBL TC 45 Changes Made: Successful");
-       // logout("supportadmin");
+        click(supportAdminPageObjects.goldkaratsedit(),"gold karat dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.goldkaratsedit2(),"gold karat dropdown/textbox choice");
+
+        click(supportAdminPageObjects.goldcoloredit()," gold color dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.goldcoloredit2()," gold color dropdown/textbox choice");
+
+        click(supportAdminPageObjects.genderedit()," gender dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.genderedit2()," gender dropdown/textbox choice");
+
+        click(supportAdminPageObjects.stoneedit(),"stone dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.stoneedit2(),"stone dropdown/textbox  choice");
+
+        click(supportAdminPageObjects.stonecoloredit(),"stone color dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.stonecoloredit2(),"stone color dropdown/textbox choice");
+
+        click(supportAdminPageObjects.conditionedit(),"condition dropdown/textbox");
+        waitSleep(1000);
+        click(supportAdminPageObjects.conditionedit2(),"condition dropdown/textbox choice");
+        waitSleep(1000);
+
+        click(supportAdminPageObjects.Quantitytxtbox(), "Quantity Textbox");
+        supportAdminPageObjects.Quantitytxtbox().clear();
+        supportAdminPageObjects.ProductSize().clear();
+        supportAdminPageObjects.ItemWeighttxtbox().clear();
+        supportAdminPageObjects.StyleNametxtbox().clear();
+        supportAdminPageObjects.Notetxtbox().clear();
+        click(supportAdminPageObjects.Barcodetxtbox(), "Barcode Textbox");
+        supportAdminPageObjects.Barcodetxtbox().clear();
+        supportAdminPageObjects.Lotnumbertxtbox().clear();
+        supportAdminPageObjects.Costofsalestxtbox().clear();
+        supportAdminPageObjects.grosssalestxtbox().clear();
+        supportAdminPageObjects.pricetxtbox().clear();
+
+        type(supportAdminPageObjects.Quantitytxtbox(), "Changed Value", "2");
+        type(supportAdminPageObjects.ProductSize(), "Changed Value", "6");
+        type(supportAdminPageObjects.ItemWeighttxtbox(), "Changed Value", "6");
+        type(supportAdminPageObjects.StyleNametxtbox(), "Changed Value", "testtest");
+        type(supportAdminPageObjects.Notetxtbox(), "Changed Value", "testing the test");
+        String quantityVal = getValue(supportAdminPageObjects.Quantitytxtbox());
+        String sizeVal = getValue(supportAdminPageObjects.ProductSize());
+        String itemweightVal = getValue(supportAdminPageObjects.ItemWeighttxtbox());
+        String stylenameVal = getValue(supportAdminPageObjects.StyleNametxtbox());
+        String notetextVal = getValue(supportAdminPageObjects.Notetxtbox());
+
+        type(supportAdminPageObjects.Barcodetxtbox(), "Changed Value", "7654321");
+        type(supportAdminPageObjects.Lotnumbertxtbox(), "Changed Value", "87654321");
+        type(supportAdminPageObjects.Costofsalestxtbox(), "Changed Value", "2000.00");
+        type(supportAdminPageObjects.grosssalestxtbox(), "Changed Value", "3000.00");
+        type(supportAdminPageObjects.pricetxtbox(), "Changed Value", "2999.00");
+        String barcodeVal = getValue(supportAdminPageObjects.Barcodetxtbox());
+        String lotnumberVal = getValue(supportAdminPageObjects.Lotnumbertxtbox());
+        String costofsaleVal = getValue(supportAdminPageObjects.Costofsalestxtbox());
+        String grosssaleVal = getValue(supportAdminPageObjects.grosssalestxtbox());
+        String priceVal = getValue(supportAdminPageObjects.pricetxtbox());
+        waitSleep(1500);
+
+        click(supportAdminPageObjects.updateandsubmit(),"");
+        waitSleep(3000);
+
+        assertEqual(getValue(supportAdminPageObjects.Quantitytxtbox()), quantityVal);
+        assertEqual(getValue(supportAdminPageObjects.ProductSize()), sizeVal);
+        assertEqual(getValue(supportAdminPageObjects.ItemWeighttxtbox()), itemweightVal);
+        assertEqual(getValue(supportAdminPageObjects.StyleNametxtbox()), stylenameVal);
+        assertEqual(getValue(supportAdminPageObjects.Notetxtbox()), notetextVal);
+
+        assertEqual(getValue(supportAdminPageObjects.Barcodetxtbox()), barcodeVal);
+        assertEqual(getValue(supportAdminPageObjects.Lotnumbertxtbox()), lotnumberVal);
+        assertEqual(getValue(supportAdminPageObjects.Costofsalestxtbox()), costofsaleVal);
+        assertEqual(getValue(supportAdminPageObjects.grosssalestxtbox()), grosssaleVal);
+        assertEqual(getValue(supportAdminPageObjects.pricetxtbox()), priceVal);
+        passTest("SBL_TC_45_ValidateChangesMade", "Passed!!!" );
+
     }
 
     public void SBL_TC_46_CancelButtonFunctionality() {

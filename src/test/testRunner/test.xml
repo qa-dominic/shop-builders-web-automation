@@ -6,30 +6,30 @@
         <listener class-name="utilities.RetryAnalyzer.RetryTransformer"/>
     </listeners>
 
-    <!-- <test name="LOGIN">
-        <parameter name="browser" value="chrome">
-            <classes>
-                <class name="MLshopBuilders.actual.LoginT">
-                </class>
-            </classes>
-        </parameter>
-    </test>
-    <test name="SIGNUP">
-        <parameter name="browser" value="chrome">
-            <classes>
-                <class name="MLshopBuilders.actual.SignUpT">
-                </class>
-            </classes>
-        </parameter>
-    </test>
-    <test name="MERCHANT">
-        <parameter name="browser" value="chrome">
-            <classes>
-                <class name="MLshopBuilders.actual.MerchantT">
-                </class>
-            </classes>
-        </parameter>
-    </test>
+<!--    <test name="LOGIN">-->
+<!--        <parameter name="browser" value="chrome">-->
+<!--            <classes>-->
+<!--                <class name="MLshopBuilders.actual.LoginT">-->
+<!--                </class>-->
+<!--            </classes>-->
+<!--        </parameter>-->
+<!--    </test>-->
+<!--    <test name="SIGNUP">-->
+<!--        <parameter name="browser" value="chrome">-->
+<!--            <classes>-->
+<!--                <class name="MLshopBuilders.actual.SignUpT">-->
+<!--                </class>-->
+<!--            </classes>-->
+<!--        </parameter>-->
+<!--    </test>-->
+<!--    <test name="MERCHANT">-->
+<!--        <parameter name="browser" value="chrome">-->
+<!--            <classes>-->
+<!--                <class name="MLshopBuilders.actual.MerchantT">-->
+<!--                </class>-->
+<!--            </classes>-->
+<!--        </parameter>-->
+<!--    </test>-->
     <test name="SUPPORT ADMIN">
         <parameter name="browser" value="chrome">
             <classes>
@@ -37,13 +37,13 @@
                 </class>
             </classes>
         </parameter>
-    </test> -->
-    <test name="ADMIN">
-        <parameter name="browser" value="chrome">
-            <classes>
-                <class name="MLshopBuilders.actual.AdminT">
-                </class>
-            </classes>
-        </parameter>
     </test>
+<!--    <test name="ADMIN">-->
+<!--        <parameter name="browser" value="chrome">-->
+<!--            <classes>-->
+<!--                <class name="MLshopBuilders.actual.AdminT">-->
+<!--                </class>-->
+<!--            </classes>-->
+<!--        </parameter>-->
+<!--    </test>-->
 </suite>

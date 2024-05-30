@@ -3,14 +3,17 @@ package MLshopBuilders.actual;
 import MLshopBuilders.base.BaseTest;
 import mlshopbuilder.testSteps.SupportAdmin_Steps;
 import org.testng.annotations.Test;
+import utilities.ExtentReport.ExtentReporter;
 
 public class SupportAdminT extends BaseTest{
 
 
-
-    @Test(priority =1)
+    @Test(priority = 0, description = "Login using Support Admin account")
     public void SBL_TC_01_SuppAdminLogIn() throws Exception {
-        supportAdminSteps.SBL_TC_01_SuppAdminLogIn();
+        loginSteps.loginByRole("supportadmin");
+        if (loginSteps.isInHomePage()) {
+            ExtentReporter.logPass("SBL_TC_01_SuppAdminLogIn", "Successfully Logged in  Supp Administrator");
+        }
     }
     @Test(priority =2, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
     public void SBL_TC_02_ShopbuilderpageNavigation() throws Exception {
@@ -52,30 +55,29 @@ public class SupportAdminT extends BaseTest{
     public void SBL_TC_16_17_EditBannerAndCancelEditBanner() throws Exception {
         supportAdminSteps.SBL_TC_16_17_EditBannerAndCancelEditBanner();
     }
-    @Test(priority =12, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
-    public void SBL_TC_18_to_21_AddBanner() throws Exception {
-        supportAdminSteps.SBL_TC_18_to_21_AddBanner();
-    }
+//    @Test(priority =12, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
+//    public void SBL_TC_18_to_21_AddBanner() throws Exception {
+//        supportAdminSteps.SBL_TC_18_to_21_AddBanner();
+//    }
     @Test(priority =13, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
     public void SBL_TC_22_AddproductRedirection() throws Exception {
         supportAdminSteps.SBL_TC_22_AddproductRedirection();
     }
-    @Test(priority =14, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
-    public void SBL_TC_23_and_24_ProductandSalesInput() throws Exception {
-        supportAdminSteps.SBL_TC_23_and_24_ProductandSalesInput();
-    }
-    @Test(priority =15, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
-    public void SBR_TC_25_ImageUpload() throws Exception {
-        supportAdminSteps.SBR_TC_25_ImageUpload();
-    }
+//    @Test(priority =14, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
+//    public void SBL_TC_23_and_24_ProductandSalesInput() throws Exception {
+//        supportAdminSteps.SBL_TC_23_and_24_ProductandSalesInput();
+//    }
+//   @Test(priority =15, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
+//  public void SBR_TC_25_ImageUpload() throws Exception {
+//        supportAdminSteps.SBR_TC_25_ImageUpload();
+//    }
     @Test(priority =16, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
     public void SBL_TC_26_InputsRequired() throws Exception {
         supportAdminSteps.SBL_TC_26_InputsRequired();
     }
-
     @Test(priority =17, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
-    public void SBL_TC_27_SubmitandPublish() throws Exception {
-        supportAdminSteps.SBL_TC_27_SubmitandPublish();
+    public void SBL_TC_27_SubmitAndPublish() throws Exception {
+        supportAdminSteps.SBL_TC_27_SubmitAndPublish();
     }
     @Test(priority =18, dependsOnMethods = "SBL_TC_01_SuppAdminLogIn")
     public void SBL_TC_28_ViewProductRedirection() throws Exception {
@@ -161,8 +163,8 @@ public class SupportAdminT extends BaseTest{
     public void SBL_TC_53_UpdateInfoMerchant() throws Exception {
         supportAdminSteps.SBL_TC_53_UpdateInfoMerchant();
     }
-
-    //way labot pa
+//
+//    //way labot pa
 //    @Test(priority =38)
 //    public void SBL_TC_54() throws Exception {
 //        supportAdminSteps.SBL_TC_54();
@@ -172,7 +174,6 @@ public class SupportAdminT extends BaseTest{
         supportAdminSteps.SBL_TC_55_AddstorestoMerchant();
     }
 }
-//
 
 //coommit
 

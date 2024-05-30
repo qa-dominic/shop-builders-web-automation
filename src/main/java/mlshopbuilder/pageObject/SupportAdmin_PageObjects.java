@@ -56,33 +56,18 @@ public class SupportAdmin_PageObjects {
     public WebElement Publlishbtnadd() {return getDriver().findElement(By.xpath("//button[normalize-space()='Publish']"));}
 
     //Product Information
-    public WebElement Quantitytxtbox(){return  getDriver().findElement(By.id("quantity"));}
-    public WebElement errorQuantitytxtbox(){return  getDriver().findElement(By.xpath("//body/div[contains(@class,'pt-15')]/div[contains(@class,'max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4')]/div[contains(@class,'pt-16')]/div/div/div/div/div/div[contains(@class,'')]/div[contains(@class,'ps-8 mb-3 ml-5 text-gray-900 dark:text-black-950')]/form/div[contains(@class,'m-6')]/span[1]"));}
-    public WebElement ItemWeighttxtbox(){return  getDriver().findElement(By.id("weight"));}
-    public WebElement errorItemWeighttxtbox(){return  getDriver().findElement(By.xpath("//body/div[contains(@class,'pt-15')]/div[contains(@class,'max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4')]/div[contains(@class,'pt-16')]/div/div/div/div/div/div[contains(@class,'')]/div[contains(@class,'ps-8 mb-3 ml-5 text-gray-900 dark:text-black-950')]/form/div[contains(@class,'m-6')]/span[2]"));}
-
-    public WebElement StyleNametxtbox(){return  getDriver().findElement(By.xpath("//input[@id='name']"));}
-    public WebElement errorStyleNametxtbox(){return  getDriver().findElement(By.xpath(""));}
-    public WebElement Notetxtbox(){return  getDriver().findElement(By.xpath("//textarea[@id='description']"));}
-    public WebElement errorNotetxtbox(){return  getDriver().findElement(By.xpath(""));}
+    public WebElement Quantitytxtbox(){return  getDriver().findElement(By.xpath("//input[@id='quantity']"));}
+    public WebElement ItemWeighttxtbox(){return  getDriver().findElement(By.xpath("//input[@id='weight']"));}
+    public WebElement StyleNametxtbox(){return  getDriver().findElement(By.xpath("//input[@id='styleName']"));}
+    public WebElement Notetxtbox(){return  getDriver().findElement(By.xpath("//input[@id='productNotes']"));}
     public WebElement ProductSize(){return  getDriver().findElement(By.xpath("//input[@id='productSize']"));}
 
     //sales Information
     public WebElement Barcodetxtbox(){return  getDriver().findElement(By.xpath("//input[@id='barcode']"));}
-    public WebElement errorBarcodetxtbox(){return  getDriver().findElement(By.xpath("//div[contains(@class,'ps-8 mb-3 ml-10 text-gray-500 dark:text-gray-400')]//span[1]"));}
-    public WebElement Lotnumbertxtbox(){return  getDriver().findElement(By.xpath("//input[@id='lotnumber']"));}
-    public WebElement Lotnumber2txtbox(){return  getDriver().findElement(By.xpath("//input[@id='lotnumber']"));}
-    public WebElement errorLotnumbertxtbox(){return  getDriver().findElement(By.xpath("//div[contains(@class,'ps-8 mb-3 ml-10 text-gray-500 dark:text-gray-400')]//span[2]"));}
-    public WebElement Costofsalestxtbox(){return  getDriver().findElement(By.xpath("//input[@id='sales']"));}
-    public WebElement Costofsales2txtbox(){return  getDriver().findElement(By.xpath("//input[@id='costSales']"));}
-    public WebElement errorCostofsalestxtbox(){return  getDriver().findElement(By.xpath("//div[contains(@class,'ps-8 mb-3 ml-10 text-gray-500 dark:text-gray-400')]//span[3]"));}
-    public WebElement grosssalestxtbox(){return  getDriver().findElement(By.xpath("//input[@id='gprice']"));}
-    public WebElement grosssales2txtbox(){return  getDriver().findElement(By.xpath("//input[@id='grossPrice']"));}
-    public WebElement errorgrosssalestxtbox(){return  getDriver().findElement(By.xpath("//div[contains(@class,'ps-8 mb-3 ml-10 text-gray-500 dark:text-gray-400')]//span[4]"));}
+    public WebElement Lotnumbertxtbox(){return  getDriver().findElement(By.xpath("//input[@id='lotNum']"));}
+    public WebElement Costofsalestxtbox(){return  getDriver().findElement(By.xpath("//input[@id='costSales']"));}
+    public WebElement grosssalestxtbox(){return  getDriver().findElement(By.xpath("//input[@id='grossPrice']"));}
     public WebElement pricetxtbox(){return  getDriver().findElement(By.xpath("//input[@id='price']"));}
-    public WebElement price2txtbox(){return  getDriver().findElement(By.xpath("//input[@id='price']"));}
-    public WebElement errorpricetxtbox(){return  getDriver().findElement(By.xpath("//div[contains(@class,'ps-8 mb-3 ml-10 text-gray-500 dark:text-gray-400')]//span[5]"));}
-
 
     //View Products
     public WebElement Searchtxtbx(){return  getDriver().findElement(By.xpath("//input[@placeholder='Search']"));}
@@ -95,7 +80,7 @@ public class SupportAdmin_PageObjects {
     public WebElement entryoptionalldown(){return  getDriver().findElement(By.xpath("//option[@value='All']"));}
 
     public WebElement Viewdetailsbtn(){return  getDriver().findElement(By.xpath("(//div[contains(@class, \"jsx-9ed979a19a0f8424\")])[3]"));}
-    public WebElement Editviewdetailsbtn(){return  getDriver().findElement(By.xpath("(//div[contains(@class, \"jsx-9ed979a19a0f8424\")])[4]"));}
+    public WebElement Editviewdetailsbtn(){return  getDriver().findElement(By.xpath("(//div[contains(@class, \"jsx-9ed979a19a0f8424\")])[1]"));}
     public WebElement Amparitotickbox2(){return  getDriver().findElement(By.xpath("//label[@for='amparito']"));}
     public WebElement Viewdetailsbtn2(){return  getDriver().findElement(By.xpath("(//div[contains(@class, \"jsx-9ed979a19a0f8424\")])[1]"));}
     public WebElement Fromdateinput(){return  getDriver().findElement(By.xpath("(//input[@value=''])[2]"));}
@@ -167,6 +152,7 @@ public class SupportAdmin_PageObjects {
 
 
     public WebElement Type(){return  getDriver().findElement(By.xpath("(//button[contains(., 'Necklace')])[1]"));}
+    public WebElement gender2(){return  getDriver().findElement(By.xpath("(//button[contains(., 'Gender')])[2]"));}
     public WebElement eighteenk(){return  getDriver().findElement(By.xpath("//button[contains(., '18k')]"));}
     public WebElement whitegold(){return  getDriver().findElement(By.xpath("//button[contains(., 'White Gold')]"));}
     public WebElement mens(){return  getDriver().findElement(By.xpath("//button[contains(., 'Mens')]"));}
@@ -180,10 +166,37 @@ public class SupportAdmin_PageObjects {
     public WebElement Diamondweight(){return  getDriver().findElement(By.xpath("//input[@id='diamondweight']"));}
     public WebElement Itemsweight(){return  getDriver().findElement(By.xpath("//input[@id='weight']"));}
 
+    public WebElement typeedit(){return  getDriver().findElement(By.id("typeName"));}
+    public WebElement goldkaratsedit(){return  getDriver().findElement(By.id("material"));}
+    public WebElement goldcoloredit(){return  getDriver().findElement(By.id("materialColor"));}
+    public WebElement genderedit(){return  getDriver().findElement(By.id("gender"));}
+    public WebElement stoneedit(){return  getDriver().findElement(By.id("stone"));}
+    public WebElement stonecoloredit(){return  getDriver().findElement(By.id("stoneColor"));}
+    public WebElement conditionedit(){return  getDriver().findElement(By.id("cond"));}
 
+    public WebElement typeedit2(){return  getDriver().findElement(By.id("react-select-2-option-1"));}
+    public WebElement goldkaratsedit2(){return  getDriver().findElement(By.id("react-select-3-option-2"));}
+    public WebElement goldcoloredit2(){return  getDriver().findElement(By.id("react-select-4-option-4"));}
+    public WebElement genderedit2(){return  getDriver().findElement(By.id("react-select-5-option-2"));}
+    public WebElement stoneedit2(){return  getDriver().findElement(By.id("react-select-6-option-4"));}
+    public WebElement stonecoloredit2(){return  getDriver().findElement(By.id("react-select-7-option-2"));}
+    public WebElement conditionedit2(){return  getDriver().findElement(By.id("react-select-8-option-1"));}
 
+    //Product Information
+    public WebElement AddQuantitytxtbox(){return  getDriver().findElement(By.xpath("//input[@id='quantity']"));}
+    public WebElement AddItemWeighttxtbox(){return  getDriver().findElement(By.xpath("//input[@id='weight']"));}
+    public WebElement AddStyleNametxtbox(){return  getDriver().findElement(By.xpath("//input[@id='name']"));}
+    public WebElement AddNotetxtbox(){return  getDriver().findElement(By.xpath("//textarea[@id='description']"));}
+    public WebElement AddProductSize(){return  getDriver().findElement(By.xpath("//input[@id='style']"));}
+    public WebElement Adddiamondsize(){return  getDriver().findElement(By.xpath("//input[@id='diamondweight']"));}
 
+    //sales Information
+    public WebElement AddBarcodetxtbox(){return  getDriver().findElement(By.xpath("//input[@id='barcode']"));}
+    public WebElement AddLotnumbertxtbox(){return  getDriver().findElement(By.xpath("//input[@id='lotnumber']"));}
+    public WebElement AddCostofsalestxtbox(){return  getDriver().findElement(By.xpath("//input[@id='sales']"));}
+    public WebElement Addgrosssalestxtbox(){return  getDriver().findElement(By.xpath("//input[@id='gprice']"));}
+    public WebElement Addpricetxtbox(){return  getDriver().findElement(By.xpath("//input[@id='price']"));}
 
-
-   
+    public WebElement cancelbtnaddproduct(){return  getDriver().findElement(By.xpath("//button[contains(.,'Cancel')]"));}
+    public WebElement proceedbtn(){return  getDriver().findElement(By.xpath("//button[contains(.,'Proceed')]"));}
 }

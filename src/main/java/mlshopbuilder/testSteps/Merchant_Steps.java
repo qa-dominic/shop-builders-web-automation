@@ -240,10 +240,12 @@ public class Merchant_Steps extends Base_Steps {
        type(supportAdminPageObjects.grosssalestxtbox(), "Gross Sales Textbox", propertyReader.getproperty("grosssale"));
        type(supportAdminPageObjects.pricetxtbox(), "Price Textbox", propertyReader.getproperty("price"));
        click(merchantObjects.publishbtn(), "Publish Button");
+       click(supportAdminPageObjects.proceedbtn(), "Proceed Button");
+
        if(isVisible(merchantObjects.status(), getText(merchantObjects.status()))){
-           passTest("BR TC 12", "Publishing Product: Successful");
+           passTest("SBR TC 12", "Publishing Product: Successful");
        }else{
-           failTest("BR TC 12", "Publishing Product: Successful");
+           failTest("SBR TC 12", "Publishing Product: Successful");
        }
    }
 
