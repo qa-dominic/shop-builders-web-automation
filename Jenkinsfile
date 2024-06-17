@@ -24,7 +24,16 @@ pipeline {
                 }
                 stage('Test') {
                     steps {
-                        bat "mvn test -DfileName=test.xml"
+                        bat "mvn test -DfileName=loginRegister.xml"
+                    }
+                    steps {
+                        bat "mvn test -DfileName=merchant.xml"
+                    }
+                    steps {
+                        bat "mvn test -DfileName=supportadmin.xml"
+                    }
+                    steps {
+                        bat "mvn test -DfileName=admin.xml"
                     }
                     post {
                         success {
