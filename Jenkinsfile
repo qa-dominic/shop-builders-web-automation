@@ -46,15 +46,5 @@ pipeline {
                 }
             }
         }
-
-    post {
-        failure {
-            echo "Pipeline failed. Please check the logs."
-            // Add notification logic here
-        }
-        success {
-            echo "Pipeline succeeded!"
-            // Add notification logic here
-        }
     }
 }
