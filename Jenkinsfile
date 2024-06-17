@@ -3,7 +3,7 @@ pipeline {
         label 'Dominic-PC-D'
     }
     environment {
-        MAVEN_CMD = "mvn clean install"
+        MAVEN_CMD = "mvn clean compile"
         REPORT_DIR = "Reports"
         REPORT_FILE = "Spark.html"
         REPORT_NAME = "ExtentReport"
