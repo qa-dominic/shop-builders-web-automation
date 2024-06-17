@@ -5,8 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import utilities.Logger.LoggingUtils;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Set;
@@ -20,7 +23,8 @@ public class DriverManager {
             case CHROME:
                 setupChrome();
                 break;
-            case REMOTE_CRHOME:
+            case REMOTE_CHROME:
+                setupRemoteChrome();
                 break;
             default:
                 LoggingUtils.error("Invalid Browser...");
@@ -57,19 +61,29 @@ public class DriverManager {
         LoggingUtils.info("Chrome Driver created successfully");
     }
 
-//    public static void setupRemoteChrome(){
-//        //switch case for remote browser (e.g. CHROME, EDGE, FIREFOX)
-//        try {
-//            LoggingUtils.info ("Setting up Remote Chrome Driver....");
-//            final ChromeOptions options = new ChromeOptions ();
-//            options.addArguments ("--no-sandbox");
-//            options.addArguments ("--disable-dev-shm-usage");
-//            setDriver (new RemoteWebDriver (new URL (System.getProperty("seleniumGridURL")), options));
-//            LoggingUtils.info ("Remote Chrome Driver created successfully!");
-//        } catch (MalformedURLException e) {
-//            LoggingUtils.error("Error setting up remote chrome.");
-//        }
-//    }
+    public static void setupRemoteChrome(){
+        try {
+            LoggingUtils.info ("Setting up Remote Chrome Driver....");
+            final ChromeOptions options = new ChromeOptions ();
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--start-maximized");
+            options.addArguments("--ignore-certificate-errors");
+            //options.setPlatformName("Windows 11");
+
+            // Set the OS capabilities
+
+//            options.addArguments("--incognito");
+            String seleniumGridUrl = System.getProperty("gridURL");
+            if (seleniumGridUrl == null || seleniumGridUrl.trim().isEmpty()) {
+                throw new IllegalStateException("Selenium Grid URL is not set. Please set the 'seleniumGridURL' system property.");
+            }
+            setDriver(new RemoteWebDriver(new URL(seleniumGridUrl), options));
+            LoggingUtils.info("Remote Chrome Driver created successfully!");
+        } catch (MalformedURLException | IllegalStateException e) {
+            LoggingUtils.error("Error setting up remote Chrome." + e);
+        }
+    }
     //method for quitting driver
 public static void closeWebBrowser() {
     //waitTime(5000);
