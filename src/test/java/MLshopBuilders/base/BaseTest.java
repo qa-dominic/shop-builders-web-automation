@@ -23,8 +23,8 @@ public class BaseTest {
         if (browser == null || browser.isEmpty()) {
             throw new IllegalArgumentException("Browser parameter cannot be null or empty");
         }
-//        initializeDriver(DriverType.valueOf(browser.toUpperCase()));
-        initializeDriver(DriverType.valueOf("REMOTE_CHROME"));
+       initializeDriver(DriverType.valueOf(browser.toUpperCase()));
+        // initializeDriver(DriverType.valueOf("REMOTE_CHROME"));
         getDriver().manage().deleteAllCookies();
         getDriver().get(System.getProperty("targetUrl"));
         LoggingUtils.info("Redirecting back to home");
