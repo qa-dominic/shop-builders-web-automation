@@ -1,6 +1,5 @@
 package MLshopBuilders.base;
 
-import mlshopbuilder.pageObject.Admin_PageObjects;
 import mlshopbuilder.testSteps.*;
 import org.testng.annotations.*;
 
@@ -9,7 +8,6 @@ import utilities.Driver.DriverType;
 
 import utilities.Logger.LoggingUtils;
 
-import java.time.Duration;
 
 
 public class BaseTest {

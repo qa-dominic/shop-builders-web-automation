@@ -1,12 +1,16 @@
 pipeline {
     agent {
-        label 'Dominic-PC-D'
+        label {
+            label 'Dominic-PC-D'
+            retries 2
+        }
     }
     environment {
-        MAVEN_CMD = "mvn clean compile"
+        MAVEN_CLEAN_COMPILE_COMMAND  = "mvn clean compile"
         REPORT_DIR = "Reports"
         REPORT_FILE = "Spark.html"
         REPORT_NAME = "ExtentReport"
+        TESTNG_NAME = "**/target/testng-results.xml"
     }
 
     stages {
@@ -14,7 +18,7 @@ pipeline {
             parallel {
                 stage('Build') {
                     steps {
-                        bat "${MAVEN_CMD}"
+                        bat "${MAVEN_CLEAN_COMPILE_COMMAND}"
                     }
                     post {
                         failure {
@@ -22,7 +26,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Test') {
+                stage('Regression Tests') {
                     steps {
                         bat "mvn clean test -DfileName=test.xml"
                     }
@@ -30,7 +34,7 @@ pipeline {
                         success {
                             publishHTML([
                                 allowMissing: false,
-                                alwaysLinkToLastBuild: false,
+                                alwaysLinkToLastBuild: true,
                                 keepAll: false,
                                 reportDir: "${REPORT_DIR}",
                                 reportFiles: "${REPORT_FILE}",
@@ -39,8 +43,17 @@ pipeline {
                                 useWrapperFileDirectly: true
                             ])
                         }
-                        failure {
-                            echo "Test failed. Please check the logs."
+                         failure {
+                            publishHTML([
+                                allowMissing: false,
+                                alwaysLinkToLastBuild: true,
+                                keepAll: false,
+                                reportDir: "${REPORT_DIR}",
+                                reportFiles: "${REPORT_FILE}",
+                                reportName: "${REPORT_NAME}",
+                                reportTitles: '',
+                                useWrapperFileDirectly: true
+                            ])
                         }
                     }
                 }
